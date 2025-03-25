@@ -8,10 +8,12 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import openai
 import os
 
+
 openai.api_key = os.getenv('OPENAI_API_KEY')
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 handler1 = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
+response_counter = 0
 @app.route('/callback', methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -35,7 +37,10 @@ def handle_message(event):
     )
     try:
         ret = response['choices'][0]['message']['content'].strip()
-    except:
+        response_counter += 1
+        ret += f"\n\n Open AI 已經產生回應次數：{response_counter}"
+
+        except:
         ret = '發生錯誤！'
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=ret))
 

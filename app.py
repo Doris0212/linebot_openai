@@ -27,8 +27,8 @@ def handle_message(event):
     text1=event.message.text
     response = openai.ChatCompletion.create(
         messages=[
-            {"role": "user", "content": "你是一位英文老師，請將使用者輸入的中文訊息翻譯成英文，並簡短說明語法或用法的重點"}
-        ],{"role": "user", "content"}
+            {"role": "system", "content": "你是一位英文老師，請將使用者輸入的中文訊息翻譯成英文，並簡短說明語法或用法的重點"},{"role": "user", "content":text1} 
+        ],
         
         model="gpt-4o-mini-2024-07-18",
         temperature = 0.5,

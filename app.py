@@ -29,7 +29,7 @@ def handle_message(event):
         messages=[
             {"role": "user", "content": text1}
         ],
-        model="gpt-4o-mini-2024-07-18",
+        model="gpt-3.5-turbo",
         temperature = 0.5,
     )
     try:

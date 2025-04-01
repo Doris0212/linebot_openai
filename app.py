@@ -30,7 +30,7 @@ def handle_message(event):
             {"role": "user", "content": text1}
         ],
         model="gpt-4o-mini-2024-07-18",
-        temperature = 0.5
+        temperature = 0.5,
     )
     try:
         ret = response['choices'][0]['message']['content'].strip()
